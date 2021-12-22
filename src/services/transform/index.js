@@ -15,7 +15,7 @@ export default async function Transform(data) {
 
             let transformer;
 
-            if (rawInfo.component === 'rawInfo-chart') {
+            if (rawInfo.component === 'card-chart') {
                 transformer = RawInfoToChart;
             }
 

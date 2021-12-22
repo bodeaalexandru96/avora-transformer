@@ -8,13 +8,13 @@ export default class RawInfo extends Model {
     get component() {
         if (['bar', 'pie', 'line', 'donut', 'spline', 'symbol', 'mixed', 'horizontal', 'sunburst', 'treemap', 'bullet',
             'gauge', 'funnel', 'arearange', 'scatter', 'bubble', 'sankey', 'ml'].includes(this.type)) {
-            return 'rawInfo-chart';
+            return 'card-chart';
         }
 
         if (this.attributes.type === 'numeric') {
-            return this.visibleMetrics.length > 1 ? 'rawInfo-table' : 'rawInfo-numeric';
+            return this.visibleMetrics.length > 1 ? 'card-table' : 'card-numeric';
         }
-        return `rawInfo-${this.attributes.type}`;
+        return `card-${this.attributes.type}`;
     }
 
     get data() {
