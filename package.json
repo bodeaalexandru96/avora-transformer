@@ -1,5 +1,5 @@
 {
-  "name": "@avora/serverless",
+  "name": "@avora/transformer",
   "version": "1.0.0",
   "main": "src/index.js",
   "description": "Library for generating Highchart settings for Avora ML App",
