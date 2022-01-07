@@ -1,5 +1,5 @@
 import moment from 'moment';
-import Helpers from '../../../utils/helpers';
+import Helpers from '../../utils/helpers';
 
 const NORMAL_LIST = ['Yearly', 'Quarterly', 'Monthly', 'Weekly', 'Daily'];
 const HOURLY_LIST = [...NORMAL_LIST, 'Hourly'];

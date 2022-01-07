@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import _ from 'lodash';
-import tracker from '../../../plugins/tracker';
+import tracker from '../../plugins/tracker';
 
 export default class Model {
     constructor(attributes = {}) {

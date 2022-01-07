@@ -5,7 +5,7 @@
   "description": "Library for generating Highchart settings for Avora ML App",
   "license": "MIT",
   "scripts": {
-    "lint": "npx eslint --fix '**/*.js' --ignore-pattern node_modules/",
+    "lint": "npx eslint --fix '**/*.js' --ignore-pattern node_modules/ dist/",
     "serve": "npx nodemon -r esm index.js",
     "start": "node -r esm index.js",
     "build": "webpack --env dev && webpack --env build",

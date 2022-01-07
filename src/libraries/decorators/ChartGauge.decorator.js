@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import tracker from '../../../plugins/tracker';
+import tracker from '../../plugins/tracker';
 
 export default class ChartGaugeDecorator {
     constructor(rawInfo) {

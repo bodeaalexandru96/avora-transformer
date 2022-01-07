@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import _ from 'lodash';
 import HighChartConfig from '../config/highchart.config';
-import tracker from '../../../plugins/tracker';
+import tracker from '../../plugins/tracker';
 
 export default class ChartTrendlineDecorator {
     constructor(rawInfo) {

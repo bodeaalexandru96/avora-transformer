@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import HighchartConfig from '../config/highchart.config';
-import tracker from '../../../plugins/tracker';
+import tracker from '../../plugins/tracker';
 
 export default class ChartTypeDecorator {
     constructor(rawInfo) {

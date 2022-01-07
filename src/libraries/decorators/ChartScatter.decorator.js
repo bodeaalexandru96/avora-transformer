@@ -1,7 +1,7 @@
 /* eslint-disable no-mixed-operators */
 /* eslint-disable no-unused-vars */
 import _ from 'lodash';
-import tracker from '../../../plugins/tracker';
+import tracker from '../../plugins/tracker';
 import HighChartConfig from '../config/highchart.config';
 
 export default class ChartScatterDecorator {

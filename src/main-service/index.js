@@ -1,9 +1,9 @@
 /* eslint-disable new-cap */
 import _ from 'lodash';
-import RawInfoToChart from '../../libraries/transform/rawInfoToChart';
-import RawInfo from '../../libraries/transform/models/rawInfo.model';
-import Organisation from '../../libraries/transform/models/organisation.model';
-import tracker from '../../plugins/tracker';
+import RawInfoToChart from '../libraries/rawInfoToChart';
+import RawInfo from '../libraries/models/rawInfo.model';
+import Organisation from '../libraries/models/organisation.model';
+import tracker from '../plugins/tracker';
 
 export default async function Transform(data) {
     try {

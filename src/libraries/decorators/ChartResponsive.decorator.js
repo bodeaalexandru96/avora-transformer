@@ -1,4 +1,4 @@
-import tracker from '../../../plugins/tracker';
+import tracker from '../../plugins/tracker';
 
 export default class ChartResponsiveDecorator {
     constructor(rawInfo) {
