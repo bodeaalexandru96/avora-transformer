@@ -63,7 +63,7 @@ export default class Metric extends Model {
             return this.numberOfDecimals;
         }
 
-        return this.organisation.numberOfDecimals;
+        return 2;
     }
 
     get label() {

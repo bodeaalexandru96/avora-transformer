@@ -5,7 +5,7 @@ import RawInfo from '../libraries/models/rawInfo.model';
 import Organisation from '../libraries/models/organisation.model';
 import tracker from '../plugins/tracker';
 
-export default async function Transform(data) {
+const Transform = async (data) => {
     try {
         const result = {};
         const { rawInfos, ...extras } = data;
@@ -45,4 +45,6 @@ export default async function Transform(data) {
             debug: e.stack,
         };
     }
-}
+};
+
+export default { Transform };
