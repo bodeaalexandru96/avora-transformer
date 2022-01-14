@@ -2,6 +2,8 @@ import _ from 'lodash';
 import Formatter from '../formatters';
 import Model from './model';
 import HighChartConfig from '../config/highchart.config';
+import { summarizeNum } from '../filters/number';
+import AxisInfo from './axis-info.model';
 
 export default class RawInfoColumn extends Model {
     constructor(col, index, rawInfo) {
@@ -104,6 +106,63 @@ export default class RawInfoColumn extends Model {
         const rows = this.rawInfo.data.rows || this.rawInfo.data.results;
         const rowValuesWithoutNull = rows.map((row) => row[index]).filter((x) => x);
         return _.meanBy(rowValuesWithoutNull);
+    }
+
+    simpleFormatter(value) {
+        let formatted = value;
+        let symbol = '';
+        const org = _.pick(this.organisation, ['useRounding', 'numberOfDecimals', 'dateFormat']);
+
+        if (this.formula) {
+            const axis = (new AxisInfo({ symbol: this.formula.type }));
+            symbol = this.formula.type;
+            formatted = Formatter.guessAndFormat(null, value, this.formula.decimals, org, axis.type, symbol);
+        } else if (this.metric.yAxis) {
+            symbol = this.metric.yAxis.symbol;
+            formatted = this.metric.formatValue(value);
+        } else {
+            formatted = Formatter.guessAndFormat(this.title, value, undefined, org);
+
+            if (this.metric.type === '%') {
+                symbol = '%';
+            }
+        }
+
+        formatted = Formatter.isDateAndTime(formatted) ? formatted : Formatter.numberGetPrefixSuffix(formatted, true);
+
+        if (this.groupings) {
+            try {
+                formatted = JSON.parse(formatted).join(', ');
+            } catch (e) {
+                console.log('error');
+            }
+        }
+
+        const custom = this.getCustomFormats(value) || [];
+
+        formatted = _.reduce(custom, (formattedValue, rule) => {
+            if (_.isNumber(rule.decimals)) { // if we have a custom decimals value besides the organisation one
+                formattedValue = Formatter.formatDecimals(formattedValue, rule.decimals, org);
+            }
+            if (rule.useShortNumbers) {
+                formattedValue = summarizeNum(formattedValue, symbol);
+            }
+
+            if (rule.prefix) {
+                formattedValue = `${rule.prefix}${formattedValue}`;
+            }
+
+            if (rule.suffix) {
+                formattedValue = `${formattedValue}${rule.suffix}`;
+            }
+
+            if (!rule.commaSeparator) {
+                formattedValue = formattedValue.toString().replace(/,/g, '');
+            }
+            return formattedValue;
+        }, formatted);
+
+        return formatted;
     }
 
     getCustomFormats(value) {
