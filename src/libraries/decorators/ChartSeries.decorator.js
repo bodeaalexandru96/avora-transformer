@@ -158,7 +158,7 @@ export default class ChartSeriesDecorator {
                 .map((_val, index) => {
                     const column = this.rawInfo.data.mappedColumns[index + groups];
 
-                    if (!_.isNumber(column.time)) return false;
+                    if (!column || !_.isNumber(column.time)) return false;
 
                     return {
                         x: column.time,

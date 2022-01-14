@@ -84,7 +84,7 @@ export default class ChartyAxisDecorator {
             };
         }
 
-        const data = _(this.options.series).filter('yAxis').map('data');
+        const data = _(this.options.series).filter((s) => (s.yAxis || s.yAxis === 0)).map('data');
         const series = data.flatten().map((row) => row[1] || row.y).flatten().value();
 
         let min = _.min(series);
